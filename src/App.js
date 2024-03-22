@@ -1,5 +1,7 @@
 import { useState } from "react";
+
 import { fetchWeather } from "./api/fetchWeather";
+import InstallModal from "./compponents/InstallModal";
 import Card from "./card";
 import "./App.css";
 
@@ -16,24 +18,27 @@ const App = () => {
   };
 
   return (
-    <div className="main-container">
-      <input
-        className="search"
-        type="text"
-        placeholder="Search..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        onKeyDown={handleSearch}
-      />
+    <>
+      <div className="main-container">
+        <input
+          className="search"
+          type="text"
+          placeholder="Search..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={handleSearch}
+        />
 
-      {weather.main ? (
-        <Card weather={weather} />
-      ) : (
-        <div className="empty">
-          <p>No data is here, type in the search bar and hit enter.</p>
-        </div>
-      )}
-    </div>
+        {weather.main ? (
+          <Card weather={weather} />
+        ) : (
+          <div className="empty">
+            <p>No data is here, type in the search bar and hit enter.</p>
+          </div>
+        )}
+      </div>
+      <InstallModal />
+    </>
   );
 };
 
